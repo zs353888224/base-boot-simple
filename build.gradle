@@ -1,0 +1,127 @@
+group 'cn.wscq'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: "idea"
+apply plugin: "maven"
+apply plugin: "eclipse"
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+        classpath("org.springframework:springloaded:1.2.8.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+configurations {
+    mybatisGenerator
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("org.springframework.boot:spring-boot-starter-data-redis")
+    compile("org.springframework.boot:spring-boot-autoconfigure")
+    compile("org.springframework.boot:spring-boot-configuration-processor")
+    compile("org.springframework.session:spring-session-data-redis")
+    compile("org.flywaydb:flyway-core")
+    compile("mysql:mysql-connector-java")
+
+    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1")
+    compile("com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3")
+
+    compile("com.alibaba:fastjson:1.2.41")
+    compile("com.google.zxing:core:3.2.1")
+    compile("org.apache.httpcomponents:httpclient:4.5.4")
+    compile("joda-time:joda-time:2.9.9")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.boot:spring-boot-test-autoconfigure")
+    testCompile('org.springframework.security:spring-security-test')
+
+    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.5'
+    mybatisGenerator 'mysql:mysql-connector-java:5.1.45'
+    mybatisGenerator 'tk.mybatis:mapper:3.4.5'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/java/main/")
+        testOutputDir = file("$buildDir/classes/java/test/")
+    }
+}
+
+sourceSets {
+    def p = 'local'
+    if (project.hasProperty("env")) {
+        p = "${env}"
+    }
+    main {
+        resources {
+            srcDir("src/main/conf/" + p)
+        }
+    }
+}
+
+def getDbProperties = {
+    def properties = new Properties()
+    file("src/main/resources/db-generate.properties").withInputStream { inputStream ->
+        properties.load(inputStream)
+    }
+    properties
+}
+
+task mybatisGenerate << {
+    def properties = getDbProperties()
+    ant.properties['targetProject'] = projectDir.path
+    ant.properties['driverClass'] = properties.getProperty("jdbc.driverClassName")
+    ant.properties['connectionURL'] = properties.getProperty("jdbc.url")
+    ant.properties['userId'] = properties.getProperty("jdbc.user")
+    ant.properties['password'] = properties.getProperty("jdbc.pass")
+    ant.properties['modelPackage'] = properties.getProperty("modelPackage")
+    ant.properties['mapperPackage'] = properties.getProperty("mapperPackage")
+    ant.properties['sqlMapperPackage'] = properties.getProperty("sqlMapperPackage")
+    ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
+    ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
+
+    ant.taskdef(
+            name: 'mbgenerator',
+            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+            classpath: configurations.mybatisGenerator.asPath
+    )
+    ant.mbgenerator(overwrite: true,
+            configfile: 'src/main/resources/generatorConfig.xml', verbose: true) {
+        propertyset {
+            propertyref(name: 'targetProject')
+            propertyref(name: 'userId')
+            propertyref(name: 'driverClass')
+            propertyref(name: 'connectionURL')
+            propertyref(name: 'password')
+            propertyref(name: 'src_main_java')
+            propertyref(name: 'src_main_resources')
+
+            propertyref(name: 'modelPackage')
+            propertyref(name: 'mapperPackage')
+            propertyref(name: 'sqlMapperPackage')
+        }
+    }
+}
