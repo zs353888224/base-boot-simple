@@ -47,6 +47,7 @@ public class DemoController {
     // @Valid 在注入前进行参数验证，如果验证失败会返回固定格式的API
     public APIResult postDemo(@ModelAttribute @Valid DemoForm form) {
         TDemo demo = new TDemo();
+        demo.setTestId(form.getDemoId());
         demo.setTestName(form.getName());
         if (form.getCount() == 1) {
             // 业务上不能通过，可抛出BusinessException异常。异常处理会根据i18n/messages.properties中配置信息返回API
@@ -79,7 +80,6 @@ public class DemoController {
             throw new BindException(bindingResult);
         }
         TDemo demo = new TDemo();
-        demo.setTestId(form.getDemoId());
         demo.setTestName(form.getName());
         demoService.create(demo);
     }

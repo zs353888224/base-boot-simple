@@ -57,7 +57,7 @@
     <logger name="org.apache.ibatis" level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <logger name="cn.monstar.payment.web.controller" level="DEBUG">
+    <logger name="cn.wscq.spring.web.controller" level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </logger>
 </configuration>
