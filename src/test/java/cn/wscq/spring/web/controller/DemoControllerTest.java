@@ -87,7 +87,7 @@ public class DemoControllerTest {
     @Test
     public void testDelete() {
         ResponseEntity<APIResult> rs = testRestTemplate.exchange("/demo/1", HttpMethod.DELETE, new HttpEntity<>(""), APIResult.class);
-        Assert.assertEquals(0, rs.getBody().getStatus());
+        Assert.assertEquals(null, rs.getBody());
     }
 
     @Test
@@ -97,6 +97,6 @@ public class DemoControllerTest {
         form.setName("dasasda");
         form.setCount(3);
         ResponseEntity<APIResult> rs = testRestTemplate.exchange("/demo", HttpMethod.PUT, new HttpEntity<>(form), APIResult.class);
-        Assert.assertEquals(0, rs.getBody().getStatus());
+        Assert.assertEquals(null, rs.getBody());
     }
 }

@@ -12,9 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @description
  * @date 2017/12/14 16:36
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@Import(MyTestsConfiguration.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+//@Import(MyTestsConfiguration.class)
 public class DemoServiceTest {
+
 
 }
