@@ -19,4 +19,6 @@ public class DemoServiceImpl extends BaseServiceImpl<TDemo, Long, TDemoMapper> i
     public void setRepository(TDemoMapper repository) {
         super.repository = repository;
     }
+
+    // 实现自定义接口
 }

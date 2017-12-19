@@ -10,6 +10,7 @@ import java.io.Serializable;
  * @date 2017/12/14 16:38
  */
 public class DemoForm implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private Long demoId;

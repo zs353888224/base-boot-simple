@@ -40,6 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     public APIResult handleBusinessException(BusinessException e) {
         String message = messageSource.getMessage(e.getCode(), e.getArgs(), LocaleContextHolder.getLocale());
         logger.info("BusinessException: {}", message);
@@ -54,6 +55,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public APIResult handleGlobalException(Exception e) {
         logger.error(e.getMessage());
         logger.error("error:", e);

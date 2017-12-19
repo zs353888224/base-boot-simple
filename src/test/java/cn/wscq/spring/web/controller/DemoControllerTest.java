@@ -33,7 +33,7 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(MyTestsConfiguration.class)
-public class DomeControllerTest {
+public class DemoControllerTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -59,7 +59,7 @@ public class DomeControllerTest {
         map.add("name", "tested");
         APIResult rs = testRestTemplate.postForObject("/demo", map, APIResult.class);
         Assert.assertEquals(1, rs.getStatus());
-        String msg = messageSource.getMessage("test", new String[]{"123", "456"}, LocaleContextHolder.getLocale());
+        String msg = messageSource.getMessage("demo", new String[]{"123", "456"}, LocaleContextHolder.getLocale());
         Assert.assertEquals(msg, rs.getMessage());
 
         map.clear();
