@@ -10,7 +10,7 @@ jdk:
   - oraclejdk8
 services:
   - mysql
-  - redis-server --port 6379 --requirepass 'root'
+  - redis-server
 test:
   adapter: mysql2
   database: myapp_test

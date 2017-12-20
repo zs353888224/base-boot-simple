@@ -11,7 +11,7 @@ spring:
         port: 6379
         timeout: 300
     messages:
-      basename: i18n/messages
+        basename: i18n/messages
 mybatis:
     mapperLocations: classpath:mappers/*.xml
     type-handlers-package: cn.wscq.spring.domain.dao.mybatis
@@ -26,4 +26,4 @@ server:
     port: 2333
     context-path: '/'
 flyway:
-   baseline-on-migrate: true
+    baseline-on-migrate: true
