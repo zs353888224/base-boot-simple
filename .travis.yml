@@ -1,0 +1,22 @@
+language: java
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+jdk:
+  - oraclejdk8
+services:
+  - mysql
+  - redis-server --port 6379 --requirepass 'root'
+test:
+  adapter: mysql2
+  database: myapp_test
+  username: root
+  encoding: utf8
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS base_boot DEFAULT CHARSET utf8 COLLATE utf8_bin;'
+before_script:
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('123456') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
