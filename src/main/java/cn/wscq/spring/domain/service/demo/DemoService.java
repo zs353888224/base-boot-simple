@@ -10,4 +10,5 @@ import cn.wscq.spring.domain.service.BaseService;
  * @date 2017/12/14 16:34
  */
 public interface DemoService extends BaseService<TDemo, Long> {
+    // 自定义接口
 }

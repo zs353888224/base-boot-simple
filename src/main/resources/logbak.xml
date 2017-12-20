@@ -1,5 +1,5 @@
 <!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
-<configuration scan="true" scanPeriod="10 seconds">
+<configuration scan="true" scanPeriod="60 seconds">
     <!-- Simple file output -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- encoder defaults to ch.qos.logback.classic.encoder.PatternLayoutEncoder -->

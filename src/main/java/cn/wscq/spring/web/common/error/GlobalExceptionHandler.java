@@ -11,12 +11,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.util.WebUtils;
 
 /**
  * @author shuai
@@ -62,6 +64,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return APIResult.failure().setMessage(e.getMessage());
     }
 
+    @Override
+    public ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
+                                                          HttpStatus status, WebRequest request) {
+        logger.error(ex.getMessage());
+        logger.error("error:", ex);
+        if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
+            request.setAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE, ex, WebRequest.SCOPE_REQUEST);
+        }
+        return new ResponseEntity<>(APIResult.failure().setMessage(ex.getMessage()), status);
+    }
+
     /**
      * 处理绑定数据异常
      *
@@ -72,8 +85,28 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
      * @return
      */
     @Override
-    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    public ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers,
+                                                      HttpStatus status, WebRequest request) {
         logger.info("BindException: {}", ex.getMessage());
-        return new ResponseEntity<>(APIResult.failure().setData(ex.getBindingResult().getAllErrors()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(APIResult.failure().setData(ex.getBindingResult().getAllErrors()),
+                HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * 处理绑定数据异常
+     *
+     * @param ex
+     * @param headers
+     * @param status
+     * @param request
+     * @return
+     */
+    @Override
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                               HttpHeaders headers, HttpStatus status,
+                                                               WebRequest request) {
+        logger.info("MethodArgumentNotValid: {}", ex.getMessage());
+        return new ResponseEntity<>(APIResult.failure().setData(ex.getBindingResult().getAllErrors()),
+                HttpStatus.BAD_REQUEST);
     }
 }
