@@ -10,7 +10,7 @@ jdk:
   - oraclejdk8
 services:
   - mysql
-  - redis-server --port 6379 --requirepass 'root'
+  - redis-server
 test:
   adapter: mysql2
   database: myapp_test
@@ -20,3 +20,4 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS base_boot DEFAULT CHARSET utf8 COLLATE utf8_bin;'
 before_script:
   - echo "USE mysql;\nUPDATE user SET password=PASSWORD('123456') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - redis-server /etc/redis/redis.conf --port 6379 --requirepass 'root'
