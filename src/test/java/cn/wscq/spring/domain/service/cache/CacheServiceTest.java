@@ -30,6 +30,11 @@ public class CacheServiceTest {
     public void beforeTest() {
 
         cacheService.saveString("stringone", "zhansan");
+
+        TDemo demo = new TDemo();
+        demo.setTestId(2L);
+        demo.setTestName("hahah");
+        cacheService.saveObject("objectone", demo);
     }
 
     @Test
@@ -71,8 +76,8 @@ public class CacheServiceTest {
         //获取到demo对象
         TDemo demo2 = cacheService.getObject("objectone", TDemo.class);
         //分别取出对象里面的字段进行Assert
-        Assert.assertEquals(2L, Integer.parseInt(demo2.getTestId().toString()));
-        Assert.assertEquals("hahah", demo2.getTestName().toString());
+        Assert.assertEquals(new Long(2L), demo2.getTestId());
+        Assert.assertEquals("hahah", demo2.getTestName());
 
         //Assert.assertEquals(demo,demo2);
 
@@ -98,16 +103,12 @@ public class CacheServiceTest {
 
     @Test
     public void getObject() {
-       /* TDemo demo2 = new TDemo();
-        demo2.setTestId(2L);
-        demo2.setTestName("hahah");*/
+
         //获取到demo对象
         TDemo demo3 = cacheService.getObject("objectone",TDemo.class);
         //分别取出对象里面的字段进行Assert
-        Assert.assertEquals(2L, Integer.parseInt(demo3.getTestId().toString()));
-        Assert.assertEquals("hahah", demo3.getTestName().toString());
-
-
+        Assert.assertEquals(new Long(2L), demo3.getTestId());
+        Assert.assertEquals("hahah", demo3.getTestName());
 
     }
 
