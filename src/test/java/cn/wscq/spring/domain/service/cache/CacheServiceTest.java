@@ -42,8 +42,8 @@ public class CacheServiceTest {
     @Test
     public void saveString() {
         //存贮一般的字符串
-        cacheService.saveString("stringone", "zhansan");
-        Assert.assertEquals("zhansan",cacheService.getString("stringone"));
+        cacheService.saveString("stringone", "zhansang");
+        Assert.assertEquals("zhansang",cacheService.getString("stringone"));
 
     }
 
