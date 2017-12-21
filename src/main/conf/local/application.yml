@@ -8,7 +8,7 @@ spring:
     redis:
         host: localhost
         password: root
-        port: 6379
+        port: 6380
         timeout: 300
     messages:
         basename: i18n/messages
