@@ -77,5 +77,6 @@ public class DemoController {
         TDemo demo = new TDemo();
         demo.setTestName(form.getName());
         demoService.create(demo);
+
     }
 }
