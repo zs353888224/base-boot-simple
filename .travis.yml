@@ -20,4 +20,4 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS base_boot DEFAULT CHARSET utf8 COLLATE utf8_bin;'
 before_script:
   - echo "USE mysql;\nUPDATE user SET password=PASSWORD('123456') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
-  - nohup redis-server /etc/redis/redis.conf --port 6380 --requirepass 'root' &
+  - nohup redis-server /etsdsc/redis/redis.conf --port 6380 --requirepass 'root' &
