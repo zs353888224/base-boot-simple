@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  * @date 2017/12/14 16:16
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(MyTestsConfiguration.class)
 public class CacheServiceTest {
 

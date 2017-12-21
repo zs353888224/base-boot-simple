@@ -8,8 +8,6 @@ import cn.wscq.spring.web.common.error.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -73,12 +71,9 @@ public class DemoController {
     }
 
     @PutMapping
-    // @RequestBody 接收和注入json格式的数据，BindingResult需要和@Valid连用，用于绑定数据验证信息
-    public void putDemo(@RequestBody @Valid DemoForm form, BindingResult bindingResult) throws BindException {
-        // 当有数据验证未通过时，抛出BindException异常，系统会自动封装错误信息API
-        if (bindingResult.getErrorCount() > 0) {
-            throw new BindException(bindingResult);
-        }
+    // @RequestBody 接收和注入json格式的数据
+    // @Valid 在注入前进行参数验证，如果验证失败会返回固定格式的API
+    public void putDemo(@RequestBody @Valid DemoForm form) {
         TDemo demo = new TDemo();
         demo.setTestName(form.getName());
         demoService.create(demo);

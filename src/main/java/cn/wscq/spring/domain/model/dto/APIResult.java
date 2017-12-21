@@ -31,7 +31,7 @@ public class APIResult implements Serializable {
         return status;
     }
 
-    public APIResult setStatus(int status) {
+    private APIResult setStatus(int status) {
         this.status = status;
         return this;
     }
