@@ -107,7 +107,7 @@ public class CacheServiceTest {
         Assert.assertEquals(2L, Integer.parseInt(demo3.getTestId().toString()));
         Assert.assertEquals("hahah", demo3.getTestName().toString());
 
-        //Assert.assertEquals(,demo3);
+
 
     }
 
