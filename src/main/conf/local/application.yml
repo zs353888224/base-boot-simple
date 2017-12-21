@@ -7,7 +7,7 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     redis:
         host: localhost
-        password: root
+        password:
         port: 6380
         timeout: 300
     messages:
