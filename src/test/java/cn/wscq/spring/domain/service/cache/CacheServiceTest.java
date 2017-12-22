@@ -35,8 +35,9 @@ public class CacheServiceTest {
         demo.setTestName("hahah");
         cacheService.saveObject("objectone", demo);
     }
+
     @After
-    public void afterTest(){
+    public void afterTest() {
         cacheService.delete("stringone");
         cacheService.delete("objectone");
     }
@@ -45,24 +46,23 @@ public class CacheServiceTest {
     public void saveString() {
         //存贮一般的字符串
         cacheService.saveString("stringone", "zhansan");
-        Assert.assertEquals("zhansan",cacheService.getString("stringone"));
+        Assert.assertEquals("zhansan", cacheService.getString("stringone"));
     }
 
     @Test
     public void getString() {
         String value = cacheService.getString("stringone");
-        Assert.assertEquals("zhansan",value);
+        Assert.assertEquals("zhansan", value);
     }
 
     @Test
     public void saveString1() {
         try {
             //存贮字符串并且设置超时
-            cacheService.saveString("stringtwo","lisi",10);
+            cacheService.saveString("stringtwo", "lisi", 10);
             Thread.sleep(11000);
-            Assert.assertEquals(null,cacheService.getString("stringtwo"));
-        }
-        catch (InterruptedException e){
+            Assert.assertEquals(null, cacheService.getString("stringtwo"));
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -83,6 +83,7 @@ public class CacheServiceTest {
         Assert.assertEquals("hahah", demo2.getTestName());
 
     }
+
     @Test
     public void saveObject1() {
         TDemo demo = new TDemo();
@@ -90,10 +91,10 @@ public class CacheServiceTest {
         demo.setTestName("haha");
         try {
             //存贮对象并且设置超时
-            cacheService.saveObject("objecttwo",demo,10);
+            cacheService.saveObject("objecttwo", demo, 10);
             Thread.sleep(11000);
-            Assert.assertEquals(null,cacheService.getObject("objecttwo",TDemo.class));
-        } catch (InterruptedException e){
+            Assert.assertEquals(null, cacheService.getObject("objecttwo", TDemo.class));
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -101,16 +102,16 @@ public class CacheServiceTest {
     @Test
     public void getObject() {
         //获取到demo对象
-        TDemo demo = cacheService.getObject("objectone",TDemo.class);
+        TDemo demo = cacheService.getObject("objectone", TDemo.class);
         //分别取出对象里面的字段进行Assert
         Assert.assertEquals(new Long(2L), demo.getTestId());
         Assert.assertEquals("hahah", demo.getTestName());
     }
+
     @Test
     public void delete() {
         cacheService.delete("stringone");
-        Assert.assertEquals(null,cacheService.getString("stringone"));
+        Assert.assertEquals(null, cacheService.getString("stringone"));
     }
-
 
 }
