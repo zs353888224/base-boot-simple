@@ -93,8 +93,7 @@ public class CacheServiceTest {
             cacheService.saveObject("objecttwo",demo,10);
             Thread.sleep(11000);
             Assert.assertEquals(null,cacheService.getObject("objecttwo",TDemo.class));
-        }
-        catch (InterruptedException e){
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
     }
