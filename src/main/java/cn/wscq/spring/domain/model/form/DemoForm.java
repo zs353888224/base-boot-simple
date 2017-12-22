@@ -18,7 +18,7 @@ public class DemoForm implements Serializable {
     @NotNull
     private String name;
 
-    @NotNull
+    @NotNull(message = "{demo_zs}")
     private Integer count;
 
     public Integer getCount() {
