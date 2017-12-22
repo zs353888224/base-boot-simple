@@ -44,7 +44,7 @@ public class DemoControllerTest {
 
     @Before
     public void beforeTest() {
-        // 启动前真被测试数据
+        // 启动前准备测试数据
     }
 
     @Test
@@ -87,6 +87,7 @@ public class DemoControllerTest {
         Map rsMap = (Map) rs.getData();
         Assert.assertEquals(0, rs.getStatus());
         Assert.assertEquals("tested", rsMap.get("testName"));
+
     }
 
     @Test

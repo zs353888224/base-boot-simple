@@ -5,8 +5,8 @@ import java.io.*;
 /**
  * @author shuai
  * @version 1.0
- * @description 为一些csv文件加上utf8标示，确保windows环境下打开没有乱码
- * @date 2017/12/11 17:23
+ * @Description 为Linux环境生成的文件加上UTF8的BOM
+ * @createDate 2017/12/11 17:23
  */
 public class FileUtil {
 
