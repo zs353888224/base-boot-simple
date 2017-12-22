@@ -2,6 +2,7 @@ package cn.wscq.spring.domain.service.cache;
 
 import cn.wscq.spring.MyTestsConfiguration;
 import cn.wscq.spring.domain.model.mybatis.TDemo;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,10 +32,16 @@ public class CacheServiceTest {
 
         cacheService.saveString("stringone", "zhansan");
 
-        TDemo demo = new TDemo();
+       TDemo demo = new TDemo();
         demo.setTestId(2L);
         demo.setTestName("hahah");
         cacheService.saveObject("objectone", demo);
+    }
+    @After
+    public void afterTest(){
+        cacheService.delete("stringone");
+        cacheService.delete("objectone");
+
     }
 
     @Test
