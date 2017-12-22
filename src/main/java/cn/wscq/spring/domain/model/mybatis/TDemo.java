@@ -67,23 +67,5 @@ public class TDemo {
         this.testName = testName == null ? null : testName.trim();
     }
 
-   /* @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TDemo)) return false;
-
-        TDemo demo = (TDemo) o;
-
-        if (!testId.equals(demo.testId)) return false;
-        return testName.equals(demo.testName);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = testId.hashCode();
-        result = 31 * result + testName.hashCode();
-        return result;
-    }*/
-
 
 }

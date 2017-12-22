@@ -26,13 +26,11 @@ public class CacheServiceTest {
     @Autowired
     private CacheService cacheService;
 
-
     @Before
     public void beforeTest() {
 
         cacheService.saveString("stringone", "zhansan");
-
-       TDemo demo = new TDemo();
+        TDemo demo = new TDemo();
         demo.setTestId(2L);
         demo.setTestName("hahah");
         cacheService.saveObject("objectone", demo);
@@ -41,7 +39,6 @@ public class CacheServiceTest {
     public void afterTest(){
         cacheService.delete("stringone");
         cacheService.delete("objectone");
-
     }
 
     @Test
@@ -49,14 +46,12 @@ public class CacheServiceTest {
         //存贮一般的字符串
         cacheService.saveString("stringone", "zhansan");
         Assert.assertEquals("zhansan",cacheService.getString("stringone"));
-
     }
 
     @Test
     public void getString() {
         String value = cacheService.getString("stringone");
         Assert.assertEquals("zhansan",value);
-
     }
 
     @Test
@@ -79,6 +74,7 @@ public class CacheServiceTest {
         TDemo demo = new TDemo();
         demo.setTestId(2L);
         demo.setTestName("hahah");
+        //把demo对象存入redis中
         cacheService.saveObject("objectone", demo);
         //获取到demo对象
         TDemo demo2 = cacheService.getObject("objectone", TDemo.class);
@@ -86,10 +82,7 @@ public class CacheServiceTest {
         Assert.assertEquals(new Long(2L), demo2.getTestId());
         Assert.assertEquals("hahah", demo2.getTestName());
 
-        //Assert.assertEquals(demo,demo2);
-
     }
-
     @Test
     public void saveObject1() {
         TDemo demo = new TDemo();
@@ -106,19 +99,14 @@ public class CacheServiceTest {
         }
     }
 
-
-
     @Test
     public void getObject() {
-
         //获取到demo对象
-        TDemo demo3 = cacheService.getObject("objectone",TDemo.class);
+        TDemo demo = cacheService.getObject("objectone",TDemo.class);
         //分别取出对象里面的字段进行Assert
-        Assert.assertEquals(new Long(2L), demo3.getTestId());
-        Assert.assertEquals("hahah", demo3.getTestName());
-
+        Assert.assertEquals(new Long(2L), demo.getTestId());
+        Assert.assertEquals("hahah", demo.getTestName());
     }
-
     @Test
     public void delete() {
         cacheService.delete("stringone");
