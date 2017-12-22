@@ -84,7 +84,7 @@ sourceSets {
 
 def getDbProperties = {
     def properties = new Properties()
-    file("src/main/resources/db-generate.properties").withInputStream { inputStream ->
+    file("src/main/resources/dbGenerate.properties").withInputStream { inputStream ->
         properties.load(inputStream)
     }
     properties
