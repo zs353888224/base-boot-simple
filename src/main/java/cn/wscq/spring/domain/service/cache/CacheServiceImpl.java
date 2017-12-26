@@ -16,8 +16,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class CacheServiceImpl implements CacheService {
 
-    // TODO 添加日志打印
-
     @Autowired
     private StringRedisTemplate redisTemplate;
 

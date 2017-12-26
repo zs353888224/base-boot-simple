@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -43,7 +44,13 @@ public class DemoController {
     @PostMapping
     // @ModelAttribute 接收注入来自form表单的数据
     // @Valid 在注入前进行参数验证，如果验证失败会返回固定格式的API
-    public APIResult postDemo(@ModelAttribute @Valid DemoForm form) {
+    public APIResult postDemo(@ModelAttribute @Valid DemoForm form, HttpSession session) {
+
+        String str = (String) session.getAttribute("test");
+        logger.info(str);
+        if (str == null) {
+            session.setAttribute("test", "test");
+        }
         TDemo demo = new TDemo();
         demo.setTestId(form.getDemoId());
         demo.setTestName(form.getName());

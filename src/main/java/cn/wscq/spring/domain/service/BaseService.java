@@ -1,7 +1,5 @@
 package cn.wscq.spring.domain.service;
 
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-
 import java.io.Serializable;
 
 /**
@@ -10,8 +8,6 @@ import java.io.Serializable;
  * @description
  * @date 2017/12/8 10:21
  */
-// TODO （aop注解）测试该注解是否会被继承
-@EnableAspectJAutoProxy
 public interface BaseService<T, ID extends Serializable> {
 
     T createSelective(T resource);
