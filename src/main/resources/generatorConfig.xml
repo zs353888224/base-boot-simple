@@ -38,6 +38,15 @@
             <generatedKey column="id" identity="true" sqlStatement="SELECT LAST_INSERT_ID()"/>
         </table>
 
+        <table tableName="t_user" domainObjectName="TUser"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="SELECT LAST_INSERT_ID()"/>
+        </table>
+
 
     </context>
 </generatorConfiguration>
