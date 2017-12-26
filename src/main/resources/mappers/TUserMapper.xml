@@ -100,4 +100,13 @@
       password = #{password,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+ <!-- 根据用户名和密码查询用户-->
+  <select id="login" parameterType="cn.wscq.spring.domain.model.mybatis.TUser" resultMap="BaseResultMap">
+
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM  t_user
+    WHERE name = #{tUser.name} and password = #{tUser.password}
+
+  </select>
 </mapper>
