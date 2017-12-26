@@ -3,7 +3,6 @@ package cn.wscq.spring.domain.dao.mybatis;
 import cn.wscq.spring.domain.dao.BaseMapper;
 import cn.wscq.spring.domain.model.mybatis.TUser;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @author fc
@@ -13,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface TUserMapper extends BaseMapper<TUser, Long> {
-    //通过传入对象查询
 
-    TUser login(@Param("tUser") TUser tUser);
+    //通过username查询对象
+    TUser findByName(String username);
 }

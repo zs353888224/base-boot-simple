@@ -21,7 +21,7 @@ public class UserServiceImpl extends BaseServiceImpl<TUser, Long, TUserMapper> i
     }
 
     @Override
-    public TUser login(TUser tuser) {
-        return super.repository.login(tuser);
+    public TUser findByName(String username) {
+        return super.repository.findByName(username);
     }
 }

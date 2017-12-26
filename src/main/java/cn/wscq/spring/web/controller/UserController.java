@@ -29,14 +29,16 @@ public class UserController {
     public APIResult login(@RequestBody TUser tUser) {
         //日志输出传来的tUser数据
         logger.info("传来的user数据", tUser);
-        TUser loginuser = userService.login(tUser);
-        //日志输出查询后的loginuser数据
-        logger.info("query Tuser by tuser: {}", loginuser);
-        //如果不为空表示查询到了对象，可以登录。
-        if (loginuser != null) {
-            return APIResult.success().setMessage("登录成功").setData(loginuser);
+        TUser loginUser = userService.findByName(tUser.getName());
+        logger.info("查询到的user对象", loginUser);
+        if (loginUser != null) {
+            if (!loginUser.getPassword().equals(tUser.getPassword())) {
+                return APIResult.failure().setMessage("密码错误，登录失败");
+            } else {
+                return APIResult.success().setMessage("登录成功").setData(loginUser);
+            }
         } else {
-            return APIResult.failure().setMessage("用户名或者密码错误，登录失败").setData(loginuser);
+            return APIResult.failure().setMessage("用户名错误，登录失败");
         }
 
     }

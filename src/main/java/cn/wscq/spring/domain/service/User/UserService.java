@@ -11,6 +11,7 @@ import cn.wscq.spring.domain.service.BaseService;
  */
 public interface UserService extends BaseService<TUser, Long> {
 
-     TUser login(TUser tUser);
+    //传入用户名查询
+    TUser findByName(String username);
 
 }
