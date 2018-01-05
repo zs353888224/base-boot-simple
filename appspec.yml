@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/project/dsb
+    destination: /home/ec2-user/project/base-boot-simple
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
