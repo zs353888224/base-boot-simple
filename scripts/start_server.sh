@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-pwd
-ls -l
+cd $BASH_EXECUTION_STRING
+cd ..
 gradle -info bootRun -Penv=dev
