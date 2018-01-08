@@ -1,9 +1,9 @@
 spring:
     datasource:
         name: syg
-        url: jdbc:mysql://localhost:3306/base_boot?characterEncoding=utf-8
+        url: jdbc:mysql://localhost:3306/dsb_fam?characterEncoding=utf-8
         username: root
-        password: 123456
+        password: Monstar1!
         driver-class-name: com.mysql.jdbc.Driver
     redis:
         host: localhost
