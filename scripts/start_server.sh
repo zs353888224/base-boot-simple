@@ -2,4 +2,4 @@
 s=$BASH_EXECUTION_STRING
 n=${s%/scripts/start_server.sh}
 cd ${n}
-gradle -info bootRun -Penv=dev
+nohup gradle -info bootRun -Penv=dev &
