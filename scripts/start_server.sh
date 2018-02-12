@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-s=$BASH_EXECUTION_STRING
-n=${s%/scripts/start_server.sh}
-cd ${n}
-nohup gradle -info bootRun -Penv=dev &
+#!/bin/bash
+cd /home/ec2-user/project/
+java -jar build/libs/sss-SNAPSHOT.jar > /dev/null 2>&1 &
+echo $! > tpid
+echo Start Success!

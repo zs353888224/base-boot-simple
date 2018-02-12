@@ -2,9 +2,6 @@ package cn.wscq.spring.domain.service.cache;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/8 14:50
  */
 public interface CacheService {
     void saveString(String key, String value);
@@ -12,10 +9,9 @@ public interface CacheService {
     /**
      * save String
      *
-     * @param key
-     * @param value
+     * @param key key
+     * @param value value
      * @param timeout valid time，unit is second
-     * @return
      */
     void saveString(String key, String value, long timeout);
 

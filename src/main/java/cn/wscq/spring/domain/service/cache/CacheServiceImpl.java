@@ -9,9 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author shuai
- * @version 1.0
- * @description 对redis的初级应用，实现增删改的功能
- * @date 2017/12/8 14:51
  */
 @Service
 public class CacheServiceImpl implements CacheService {

@@ -5,9 +5,6 @@ import java.io.Serializable;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/14 16:38
  */
 public class DemoForm implements Serializable {
 

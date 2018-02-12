@@ -16,9 +16,6 @@ import java.util.Map;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/11 17:30
  */
 public class QrCodeUtil {
     public static String generateQrCode(String url) {

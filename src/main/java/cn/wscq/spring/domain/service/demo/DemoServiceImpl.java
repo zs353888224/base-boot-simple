@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/14 16:35
  */
 @Service
 public class DemoServiceImpl extends BaseServiceImpl<TDemo, Long, TDemoMapper> implements DemoService {

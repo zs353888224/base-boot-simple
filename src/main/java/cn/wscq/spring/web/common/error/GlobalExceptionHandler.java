@@ -22,9 +22,6 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/15 13:26
  */
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -37,8 +34,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * 捕捉业务异常
      *
-     * @param e
-     * @return
+     * @param e BusinessException
+     * @return APIResult
      */
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
@@ -52,8 +49,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * 捕捉全局异常
      *
-     * @param e
-     * @return
+     * @param e Exception
+     * @return APIResult
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody
@@ -75,15 +72,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(APIResult.failure().setMessage(ex.getMessage()), status);
     }
 
-    /**
-     * 处理绑定数据异常
-     *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
-     * @return
-     */
     @Override
     public ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers,
                                                       HttpStatus status, WebRequest request) {
@@ -92,15 +80,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * 处理绑定数据异常
-     *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
-     * @return
-     */
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                HttpHeaders headers, HttpStatus status,

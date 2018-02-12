@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/8 10:21
  */
 public interface BaseService<T, ID extends Serializable> {
 
@@ -14,11 +11,11 @@ public interface BaseService<T, ID extends Serializable> {
 
     T create(T resource);
 
-    T update(T resource);
+    int update(T resource);
 
-    T updateSelective(T resource);
+    int updateSelective(T resource);
 
-    void delete(ID id);
+    int delete(ID id);
 
     T findOne(ID id);
 }

@@ -15,9 +15,6 @@ import javax.validation.Valid;
 
 /**
  * @author shuai
- * @version 1.0
- * @description demo
- * @date 2017/12/6 16:33
  */
 // 统一采用@RestController注解
 @RestController
