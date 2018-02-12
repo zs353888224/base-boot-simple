@@ -4,11 +4,10 @@ import java.io.Serializable;
 
 /**
  * @author shuai
- * @version 1.0
- * @description
- * @date 2017/12/8 14:59
  */
 public class APIResult implements Serializable {
+
+    // TODO 在前后端分离的情况下，这个类并没有太好的表现，考虑干掉
 
     private static final long serialVersionUID = 1L;
 

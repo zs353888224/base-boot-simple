@@ -1,10 +1,9 @@
 package cn.wscq.spring.web.common.error.exception;
 
 /**
+ * 业务异常
+ *
  * @author shuai
- * @version 1.0
- * @description 业务异常
- * @date 2017/12/15 13:28
  */
 public class BusinessException extends RuntimeException {
 

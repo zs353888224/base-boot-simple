@@ -1,17 +1,19 @@
 spring:
     datasource:
         name: syg
-        url: jdbc:mysql://localhost:3306/base_boot?characterEncoding=utf-8
+        url: jdbc:mysql://localhost:3306/base_boot?characterEncoding=utf-8&useSSL=false
         username: root
         password: 123456
         driver-class-name: com.mysql.jdbc.Driver
     redis:
         host: localhost
-        password: root
+        password:
         port: 6379
         timeout: 300
     messages:
         basename: i18n/messages
+    flyway:
+        baseline-on-migrate: true
 mybatis:
     mapperLocations: classpath:mappers/*.xml
     type-handlers-package: cn.wscq.spring.domain.dao.mybatis
@@ -24,6 +26,5 @@ pagehelper:
     rowBoundsWithCount: true
 server:
     port: 2333
-    context-path: '/'
-flyway:
-    baseline-on-migrate: true
+    servlet:
+        context-path: '/'
