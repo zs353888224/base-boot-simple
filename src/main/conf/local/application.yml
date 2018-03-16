@@ -10,14 +10,16 @@ spring:
         password:
         port: 6379
         timeout: 300
-    messages:
-        basename: i18n/messages
     flyway:
         baseline-on-migrate: true
+    jackson:
+        time-zone: GMT+8
 mybatis:
     mapperLocations: classpath:mappers/*.xml
     type-handlers-package: cn.wscq.spring.domain.dao.mybatis
     type-aliases-package: cn.wscq.srping.domain.model.mybatis
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 pagehelper:
     helper-dialect: mysql
     reasonable: true
@@ -28,3 +30,5 @@ server:
     port: 2333
     servlet:
         context-path: '/'
+logging:
+    config: classpath:logbak.xml

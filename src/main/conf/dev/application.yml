@@ -1,21 +1,25 @@
 spring:
     datasource:
         name: syg
-        url: jdbc:mysql://localhost:3306/dsb_fam?characterEncoding=utf-8
+        url: jdbc:mysql://localhost:3306/base_boot?characterEncoding=utf-8&useSSL=false
         username: root
-        password: Monstar1!
+        password: 123456
         driver-class-name: com.mysql.jdbc.Driver
     redis:
         host: localhost
-        password: root
+        password:
         port: 6379
         timeout: 300
-    messages:
-      basename: i18n/messages
+    flyway:
+        baseline-on-migrate: true
+    jackson:
+        time-zone: GMT+8
 mybatis:
     mapperLocations: classpath:mappers/*.xml
     type-handlers-package: cn.wscq.spring.domain.dao.mybatis
     type-aliases-package: cn.wscq.srping.domain.model.mybatis
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 pagehelper:
     helper-dialect: mysql
     reasonable: true
@@ -24,6 +28,7 @@ pagehelper:
     rowBoundsWithCount: true
 server:
     port: 2333
-    context-path: '/'
-flyway:
-   baseline-on-migrate: true
+    servlet:
+        context-path: '/'
+logging:
+    config: classpath:logbak.xml
